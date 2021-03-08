@@ -24,9 +24,8 @@ public class vSdkSparkExternalAwsSampleTrigger implements RecordTrigger {
         List vaultIds = VaultCollections.newList();
         for (RecordChange triggerRecord : recordTriggerContext.getRecordChanges()) {
 
-            if (vaultIds.size() < 500) {
-                vaultIds.add(triggerRecord.getNew().getValue("id", ValueType.STRING));
-            } else {
+            vaultIds.add(actionRecord.getValue("id", ValueType.STRING));
+            if (vaultIds.size() = 500) {
                 moveMessagesToQueue( "vsdk_aws_queue_sample__c",
                         "vsdk_aws_queue_sample_api_gateway",
                         "vsdk_loan_approval__c",
