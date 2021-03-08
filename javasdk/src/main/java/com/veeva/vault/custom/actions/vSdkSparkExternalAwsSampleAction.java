@@ -33,10 +33,8 @@ public class vSdkSparkExternalAwsSampleAction implements RecordAction {
         String event = "Loan re-quote";
 
         for (Record actionRecord : recordActionContext.getRecords()) {
-
-            if (vaultIds.size() < 500) {
-                vaultIds.add(actionRecord.getValue("id", ValueType.STRING));
-            } else {
+            vaultIds.add(actionRecord.getValue("id", ValueType.STRING));
+            if (vaultIds.size() = 500) {
                 moveMessagesToQueue( "vsdk_aws_queue_sample__c",
                         "vsdk_aws_queue_sample_api_gateway",
                         "vsdk_loan_approval__c",
